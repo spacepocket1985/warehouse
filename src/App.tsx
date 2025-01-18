@@ -1,9 +1,22 @@
 import { FC } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { AppRouter } from './routes/AppRouter';
+import { Header } from './components/layout/Header';
+
 import '@fontsource/inter/400.css';
 
-
 const App: FC = () => {
-  return <h2>App</h2>;
+  return (
+    <Router
+      future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true,
+      }}
+    >
+      <Header />
+      <AppRouter />
+    </Router>
+  );
 };
 
 export default App;
