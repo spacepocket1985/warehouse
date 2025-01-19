@@ -15,9 +15,15 @@ export const ItemsList: React.FC<{ items: ItemType[] }> = ({ items }) => {
         </tr>
       </thead>
       <tbody>
-        {items.map((item) => (
-          <Item key={item.id} item={item} />
-        ))}
+        {items.length === 0 ? (
+          <tr>
+            <td colSpan={4} className={styles.noItems}>
+              {'По запросу ничего не найдено.'}
+            </td>
+          </tr>
+        ) : (
+          items.map((item) => <Item key={item.id} item={item} />)
+        )}
       </tbody>
     </table>
   );

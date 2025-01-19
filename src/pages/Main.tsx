@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../hooks/storeHooks';
 import { setWarehouseTotal } from '../store/slices/warehouseSlice';
 import { ItemsList } from '../components/items/itemsList/itemsList';
 import { ListFooter } from '../components/items/listFooter/ListFooter';
+import { Spinner } from '../components/spinner/Spinner';
 
 const Main: React.FC = () => {
   useEffect(() => {
@@ -24,9 +25,20 @@ const Main: React.FC = () => {
   const token = getTokenFromLS();
   const skip = !token;
 
-  const { data } = useGetItemListQuery(
+  const { data, isFetching, isError } = useGetItemListQuery(
     { page, pageSize, sortOrder, itemName },
     { skip }
+  );
+
+  const errorMsg = 'Error fetching currencies. Please try refreshing';
+
+  const contentOrSpinner = isFetching ? (
+    <Spinner />
+  ) : (
+    <>
+      <ItemsList items={data?.result || []} />
+      {data?.total && <ListFooter />}
+    </>
   );
 
   useEffect(() => {
@@ -35,12 +47,7 @@ const Main: React.FC = () => {
     }
   }, [data, dispatch]);
 
-  return (
-    <>
-      <ItemsList items={data?.result || []} />
-      {data?.total && <ListFooter />}
-    </>
-  );
+  return <>{isError ? errorMsg : contentOrSpinner}</>;
 };
 
 export default Main;
