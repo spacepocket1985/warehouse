@@ -1,0 +1,13 @@
+.itemsSelect {
+  margin-left: 1.3rem;
+  background-color: var(--AccentSecondary);
+  border: none;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 0.4rem;
+}
+
+.selectLabel {
+  font-size: 1.4rem;
+}

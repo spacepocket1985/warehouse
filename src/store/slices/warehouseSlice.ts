@@ -6,6 +6,7 @@ type StateType = {
   pageSize: number;
   total: null | number;
   sortOrder: SortOrder;
+  itemName: string;
 };
 
 const initialState: StateType = {
@@ -13,6 +14,7 @@ const initialState: StateType = {
   pageSize: 10,
   total: null,
   sortOrder: SortOrder.ASC,
+  itemName: '',
 };
 
 export const warehouseSlice = createSlice({
@@ -25,9 +27,21 @@ export const warehouseSlice = createSlice({
     setWarehousePage: (state, action: PayloadAction<number>) => {
       state.page = action.payload;
     },
+    setWarehousePageSize: (state, action: PayloadAction<number>) => {
+      state.pageSize = action.payload;
+    },
+    setWarehouseItemName: (state, action: PayloadAction<string>) => {
+      state.itemName = action.payload;
+      state.page = 1;
+    },
   },
 });
 
 export default warehouseSlice.reducer;
 
-export const { setWarehouseTotal, setWarehousePage } = warehouseSlice.actions;
+export const {
+  setWarehouseTotal,
+  setWarehousePage,
+  setWarehousePageSize,
+  setWarehouseItemName,
+} = warehouseSlice.actions;

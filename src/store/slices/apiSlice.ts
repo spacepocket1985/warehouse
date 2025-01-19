@@ -22,11 +22,11 @@ export const warehouseApi = createApi({
   endpoints: (builder) => ({
     getItemList: builder.query<
       ApiResponse,
-      { page: number; pageSize: number; sortOrder: SortOrder }
+      { page: number; pageSize: number; sortOrder: SortOrder; itemName: string }
     >({
-      query: ({ page, pageSize, sortOrder }) => {
+      query: ({ page, pageSize, sortOrder, itemName }) => {
         return {
-          url: `?page=${page}&pageSize=${pageSize}&sortOrder=${sortOrder}`,
+          url: `?page=${page}&pageSize=${pageSize}&sortOrder=${sortOrder}&itemName=${itemName}`,
         };
       },
       providesTags: (result) =>

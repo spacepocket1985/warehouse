@@ -18,13 +18,16 @@ const Main: React.FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const { page, pageSize, sortOrder } = useAppSelector(
+  const { page, pageSize, sortOrder, itemName } = useAppSelector(
     (state) => state.warehouse
   );
   const token = getTokenFromLS();
   const skip = !token;
 
-  const { data } = useGetItemListQuery({ page, pageSize, sortOrder }, { skip });
+  const { data } = useGetItemListQuery(
+    { page, pageSize, sortOrder, itemName },
+    { skip }
+  );
 
   useEffect(() => {
     if (data?.total) {
