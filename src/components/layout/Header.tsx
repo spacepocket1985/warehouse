@@ -1,3 +1,4 @@
+import { ItemForm } from '../items/itemForm/ItemForm';
 import { ItemsInformer } from '../items/itemsInformer/ItemsInformer';
 import { ItemsSearch } from '../items/itemsSearch/ItemsSearch';
 import { Modal } from '../modal/Modal';
@@ -13,11 +14,12 @@ export const Header: React.FC = () => {
       </div>
       <div className={styles.headerActions}>
         <ItemsSearch />
-        <button className={styles.headerActionsBtn}>{'+ Новая позиция'}</button>
+        <Modal isEditBtn={false} label={'+ Новая позиция'}>
+          {(handleClose) => (
+            <ItemForm isEditMode={false} handleClose={handleClose} />
+          )}
+        </Modal>
       </div>
-      <Modal isEditBtn={false} iconLabel={'test'}>
-        {(handleClose) => <button onClick={handleClose} />}
-      </Modal>
     </div>
   );
 };

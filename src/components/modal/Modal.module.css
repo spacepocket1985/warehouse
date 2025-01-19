@@ -12,7 +12,7 @@
   position: fixed;
   top: 0;
   right: 0;
-  width: 20%;
+  width: 18%;
   height: 100%;
   background-color: white;
   border-left: solid 0.2rem #f2eeee;
@@ -35,4 +35,23 @@
   background-color: #fff;
   border: solid 0.2rem #f2eeee;
   border-radius: 0.4rem;
+}
+
+.simpleBtn {
+  padding: 1.4rem 1rem;
+  color: #fff;
+  background-color: var(--AccentPrimary);
+  border: none;
+  border-radius: 0.4rem;
+}
+
+.editBtn {
+  width: 3.2rem;
+  height: 3.2rem;
+  background-image: url('edit.svg');
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: 0.5rem center;
+  border: solid 0.1rem #dfdddd;
+  border-radius: 0.4rem 0 0 0.4rem;
 }

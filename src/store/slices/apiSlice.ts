@@ -10,11 +10,9 @@ export const warehouseApi = createApi({
     baseUrl: BaseUrl,
     prepareHeaders: (headers) => {
       const token = getTokenFromLS();
-
       if (token) {
         headers.set('Authorization', `${token}`);
       }
-
       return headers;
     },
   }),
@@ -24,11 +22,9 @@ export const warehouseApi = createApi({
       ApiResponse,
       { page: number; pageSize: number; sortOrder: SortOrder; itemName: string }
     >({
-      query: ({ page, pageSize, sortOrder, itemName }) => {
-        return {
-          url: `?page=${page}&pageSize=${pageSize}&sortOrder=${sortOrder}&itemName=${itemName}`,
-        };
-      },
+      query: ({ page, pageSize, sortOrder, itemName }) => ({
+        url: `?page=${page}&pageSize=${pageSize}&sortOrder=${sortOrder}&itemName=${itemName}`,
+      }),
       providesTags: (result) =>
         result
           ? [
@@ -46,16 +42,37 @@ export const warehouseApi = createApi({
         return { ...response, result: transformedItems };
       },
     }),
+
+    addItem: builder.mutation<ApiResponse, Omit<ItemType, 'id'>>({
+      query: (item) => ({
+        url: '',
+        method: 'POST',
+        body: item,
+      }),
+      invalidatesTags: ['Items'],
+    }),
+    updateItem: builder.mutation<ApiResponse, ItemType>({
+      query: (item) => ({
+        url: `/${item.id}`,
+        method: 'PATCH',
+        body: item,
+      }),
+      invalidatesTags: ['Items'],
+    }),
   }),
 });
 
-export const { useGetItemListQuery } = warehouseApi;
+export const {
+  useGetItemListQuery,
+  useAddItemMutation,
+  useUpdateItemMutation,
+} = warehouseApi;
 
 const transformItem = (item: ItemType) => ({
   ...item,
   name: !item.name ? 'Название не указано' : item.name,
   measurement_units: !item.measurement_units
-    ? 'Еденицы не указаны'
+    ? 'Единицы не указаны'
     : item.measurement_units,
   code: !item.code ? 'Код не задан' : item.code,
 });

@@ -2,16 +2,12 @@ import { FC, ReactNode, useState } from 'react';
 import styles from './Modal.module.css';
 
 type ModalPropsType = {
-  children: (handleClose?: () => void) => ReactNode;
-  iconLabel?: string;
+  children: (handleClose: () => void) => ReactNode;
+  label?: string;
   isEditBtn: boolean;
 };
 
-export const Modal: FC<ModalPropsType> = ({
-  children,
-  iconLabel,
-  isEditBtn,
-}) => {
+export const Modal: FC<ModalPropsType> = ({ children, label, isEditBtn }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -23,7 +19,7 @@ export const Modal: FC<ModalPropsType> = ({
         onClick={handleOpen}
         className={isEditBtn ? styles.editBtn : styles.simpleBtn}
       >
-        <span>{iconLabel}</span>
+        {label}
       </button>
       {open && (
         <>
