@@ -22,9 +22,12 @@ export const warehouseSlice = createSlice({
     setWarehouseTotal: (state, action: PayloadAction<number>) => {
       state.total = action.payload;
     },
+    setWarehousePage: (state, action: PayloadAction<number>) => {
+      state.page = action.payload;
+    },
   },
 });
 
 export default warehouseSlice.reducer;
 
-export const { setWarehouseTotal } = warehouseSlice.actions;
+export const { setWarehouseTotal, setWarehousePage } = warehouseSlice.actions;

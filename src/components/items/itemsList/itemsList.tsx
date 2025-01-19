@@ -1,6 +1,7 @@
 import { Item } from '../item/Item';
 import { ItemType } from '../../../types/apiTypes';
 
+
 import styles from './ItemsList.module.css';
 
 export const ItemsList: React.FC<{ items: ItemType[] }> = ({ items }) => {

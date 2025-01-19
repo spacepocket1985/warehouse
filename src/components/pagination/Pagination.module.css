@@ -1,0 +1,24 @@
+.paginationWrapper {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.paginationWrapper button {
+  font-weight: 500;
+  width: 4rem;
+  height: 4rem;
+  background-color: #fff;
+  border: none;
+}
+
+.paginationWrapper .currentBtn {
+  font-weight: 600;
+  color: var(--AccentPrimary);
+  border: solid 0.2rem var(--AccentPrimary);
+  border-radius: 0.4rem;
+}
+
+.paginationWrapper .arrowBtn {
+  border: solid 0.2rem #f2eeee;
+  border-radius: 0.4rem;
+}
