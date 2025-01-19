@@ -1,5 +1,6 @@
 import { ItemsInformer } from '../items/itemsInformer/ItemsInformer';
 import { ItemsSearch } from '../items/itemsSearch/ItemsSearch';
+import { Modal } from '../modal/Modal';
 
 import styles from './Header.module.css';
 
@@ -14,6 +15,9 @@ export const Header: React.FC = () => {
         <ItemsSearch />
         <button className={styles.headerActionsBtn}>{'+ Новая позиция'}</button>
       </div>
+      <Modal isEditBtn={false} iconLabel={'test'}>
+        {(handleClose) => <button onClick={handleClose} />}
+      </Modal>
     </div>
   );
 };
