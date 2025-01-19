@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { SortOrder } from '../../types/apiTypes';
 
 type StateType = {
@@ -18,7 +18,13 @@ const initialState: StateType = {
 export const warehouseSlice = createSlice({
   name: 'warehouse',
   initialState,
-  reducers: {},
+  reducers: {
+    setWarehouseTotal: (state, action: PayloadAction<number>) => {
+      state.total = action.payload;
+    },
+  },
 });
 
 export default warehouseSlice.reducer;
+
+export const { setWarehouseTotal } = warehouseSlice.actions;
