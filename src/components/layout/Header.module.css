@@ -1,5 +1,6 @@
 .headerWrapper {
-  margin: 2.5rem 2rem 4.5rem 2rem;
+  margin-top: 1rem;
+  padding: 2.5rem 2rem 4.5rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;

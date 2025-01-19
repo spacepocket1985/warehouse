@@ -1,4 +1,4 @@
-import { setTokenToLS } from "./localStorageActions";
+import { setTokenToLS } from './localStorageActions';
 
 type AuthResponseType = {
   access_token: string;
@@ -25,7 +25,7 @@ export const getToken = async (): Promise<string> => {
     }
 
     const { access_token }: AuthResponseType = await res.json();
-    setTokenToLS( access_token);
+    setTokenToLS(access_token);
 
     return access_token;
   } catch (error) {

@@ -1,4 +1,4 @@
-export type Item = {
+export type ItemType = {
   id: string;
   name: string;
   description: string;
@@ -14,7 +14,7 @@ export type Item = {
 };
 
 export type ApiResponse = {
-  result: Item[];
+  result: ItemType[];
   total: number;
 };
 

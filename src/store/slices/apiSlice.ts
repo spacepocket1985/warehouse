@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { ApiResponse, SortOrder } from '../../types/apiTypes';
+import { ApiResponse, ItemType, SortOrder } from '../../types/apiTypes';
 import { getTokenFromLS } from '../../utils/localStorageActions';
 
 const BaseUrl = 'https://hcateringback-dev.unitbeandev.com/api/wh/items';
@@ -39,8 +39,23 @@ export const warehouseApi = createApi({
               { type: 'Items', id: 'LIST' },
             ]
           : [{ type: 'Items', id: 'LIST' }],
+      transformResponse: (response: ApiResponse) => {
+        const transformedItems: ItemType[] = response.result.map((item) =>
+          transformItem(item)
+        );
+        return { ...response, result: transformedItems };
+      },
     }),
   }),
 });
 
 export const { useGetItemListQuery } = warehouseApi;
+
+const transformItem = (item: ItemType) => ({
+  ...item,
+  name: !item.name ? 'Название не указано' : item.name,
+  measurement_units: !item.measurement_units
+    ? 'Еденицы не указаны'
+    : item.measurement_units,
+  code: !item.code ? 'Код не задан' : item.code,
+});

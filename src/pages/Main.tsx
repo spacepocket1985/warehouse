@@ -3,6 +3,7 @@ import { getToken } from '../utils/getToken';
 import { useGetItemListQuery } from '../store/slices/apiSlice';
 import { getTokenFromLS } from '../utils/localStorageActions';
 import { useAppSelector } from '../hooks/storeHooks';
+import { ItemsList } from '../components/items/itemsList/itemsList';
 
 const Main: React.FC = () => {
   useEffect(() => {
@@ -23,7 +24,7 @@ const Main: React.FC = () => {
   console.log(data);
   return (
     <>
-      <h2>Main page</h2>
+      <ItemsList items={data?.result || []} />
     </>
   );
 };

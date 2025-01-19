@@ -21,11 +21,16 @@
 }
 
 html {
-  font-size: 62.5%; /* 1rem = 10px */
+  font-size: 62.5%;
+  background-color: var(--BG);
 }
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: var(--BG);
+  background-color: #fff;
   color: var(--TextHead);
+}
+
+button {
+  cursor: pointer;
 }
