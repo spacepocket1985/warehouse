@@ -7,3 +7,7 @@
 .itemTr:hover {
   background-color: var(--BG);
 }
+
+.tdWithBtn {
+  text-align: center;
+}

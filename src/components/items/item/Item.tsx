@@ -11,7 +11,7 @@ export const Item: React.FC<{ item: ItemType }> = React.memo(({ item }) => {
       <td>{item.name}</td>
       <td>{item.measurement_units}</td>
       <td>{item.code}</td>
-      <td>
+      <td className={styles.tdWithBtn}>
         <Modal isEditBtn={true}>
           {(handleClose) => (
             <ItemForm isEditMode={true} handleClose={handleClose} item={item} />

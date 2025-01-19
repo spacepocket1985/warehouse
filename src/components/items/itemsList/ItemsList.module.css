@@ -14,3 +14,7 @@
   text-align: center;
   font-size: 1.6rem;
 }
+
+.itemsTable th:first-child {
+  cursor: pointer;
+}

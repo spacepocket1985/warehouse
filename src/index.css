@@ -34,4 +34,9 @@ body {
 button {
   cursor: pointer;
   border-radius: 0.4rem;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.1);
 }

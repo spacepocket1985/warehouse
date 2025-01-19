@@ -13,7 +13,7 @@ const initialState: StateType = {
   page: 1,
   pageSize: 10,
   total: null,
-  sortOrder: SortOrder.ASC,
+  sortOrder: SortOrder.DESC,
   itemName: '',
 };
 
@@ -34,6 +34,9 @@ export const warehouseSlice = createSlice({
       state.itemName = action.payload;
       state.page = 1;
     },
+    setWarehouseSortOrder: (state, action: PayloadAction<SortOrder>) => {
+      state.sortOrder = action.payload;
+    },
   },
 });
 
@@ -44,4 +47,5 @@ export const {
   setWarehousePage,
   setWarehousePageSize,
   setWarehouseItemName,
+  setWarehouseSortOrder,
 } = warehouseSlice.actions;
