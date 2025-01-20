@@ -72,4 +72,5 @@
 
 .error {
   color: var(--AccentPrimary);
+  font-size: 1.4rem;
 }

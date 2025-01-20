@@ -7,7 +7,7 @@ import {
   useUpdateItemMutation,
 } from '../../../store/slices/apiSlice';
 
-type ItemFormFields = {
+export type ItemFormFields = {
   name: string;
   measurement_units: string;
   code: string;

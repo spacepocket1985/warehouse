@@ -9,12 +9,23 @@ type StateType = {
   itemName: string;
 };
 
+const validpageSize = [10, 50, 100];
+
+const searchParam = new URLSearchParams(window.location.search);
+const pageSearchParam = Number(searchParam.get('page')) || 1;
+const pageSizeSearchParam = validpageSize .includes(
+  Number(searchParam.get('pageSize'))
+)
+  ? Number(searchParam.get('pageSize'))
+  : 10;
+const itemNameSearchParam = searchParam.get('itemName') || '';
+
 const initialState: StateType = {
-  page: 1,
-  pageSize: 10,
+  page: pageSearchParam,
+  pageSize: pageSizeSearchParam,
   total: null,
   sortOrder: SortOrder.DESC,
-  itemName: '',
+  itemName: itemNameSearchParam,
 };
 
 export const warehouseSlice = createSlice({

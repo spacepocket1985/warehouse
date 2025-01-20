@@ -1,6 +1,5 @@
-import { useNavigate } from 'react-router-dom';
 import { checkPageNum } from '../../utils/checkPageNum';
-import { RoutePaths } from '../../routes/routePaths';
+
 import { useAppDispatch, useAppSelector } from '../../hooks/storeHooks';
 import { setWarehousePage } from '../../store/slices/warehouseSlice';
 
@@ -9,7 +8,6 @@ import styles from './Pagination.module.css';
 export const Pagination: React.FC = () => {
   const { total, pageSize, page } = useAppSelector((state) => state.warehouse);
 
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const totalPages = Math.ceil(total! / pageSize);
@@ -36,7 +34,6 @@ export const Pagination: React.FC = () => {
   }
 
   const onPageChange = (page: number) => {
-    navigate(`${RoutePaths.Main}?page=${page}`);
     dispatch(setWarehousePage(page));
   };
 
