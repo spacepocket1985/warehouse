@@ -2,6 +2,8 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/storeHooks';
 import { setWarehousePageSize } from '../../../store/slices/warehouseSlice';
 import styles from './ItemsOnPage.module.css';
 
+export const validPageSizes = [5, 10, 50, 100, 200];
+
 export const ItemsOnPage: React.FC = () => {
   const { pageSize } = useAppSelector((state) => state.warehouse);
   const dispatch = useAppDispatch();
@@ -21,9 +23,12 @@ export const ItemsOnPage: React.FC = () => {
         value={pageSize}
         onChange={handleChange}
       >
-        <option value={10}>10</option>
-        <option value={50}>50</option>
-        <option value={100}>100</option>
+        {' '}
+        {validPageSizes.map((value, index) => (
+          <option key={index} value={value}>
+            {value}
+          </option>
+        ))}
       </select>
     </div>
   );

@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { SortOrder } from '../../types/apiTypes';
+import { searchParams } from '../../utils/getPageSearchParams';
 
 type StateType = {
   page: number;
@@ -9,23 +10,12 @@ type StateType = {
   itemName: string;
 };
 
-const validpageSize = [10, 50, 100];
-
-const searchParam = new URLSearchParams(window.location.search);
-const pageSearchParam = Number(searchParam.get('page')) || 1;
-const pageSizeSearchParam = validpageSize .includes(
-  Number(searchParam.get('pageSize'))
-)
-  ? Number(searchParam.get('pageSize'))
-  : 10;
-const itemNameSearchParam = searchParam.get('itemName') || '';
-
 const initialState: StateType = {
-  page: pageSearchParam,
-  pageSize: pageSizeSearchParam,
+  page: searchParams.pageSearchParam,
+  pageSize: searchParams.pageSizeSearchParam,
   total: null,
   sortOrder: SortOrder.DESC,
-  itemName: itemNameSearchParam,
+  itemName: searchParams.itemNameSearchParam,
 };
 
 export const warehouseSlice = createSlice({
