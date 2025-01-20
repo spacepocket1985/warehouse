@@ -34,14 +34,15 @@ const Main: React.FC = () => {
   const errorMsg =
     'Ошибка при получении данных. Пожалуйста, попробуйте обновить страницу.';
 
-  const contentOrSpinner = isFetching ? (
-    <Spinner />
-  ) : (
-    <>
-      <ItemsList items={data?.result || []} />
-      {data?.total && <ListFooter />}
-    </>
-  );
+  const contentOrSpinner =
+    isFetching || !isTokenLoaded ? (
+      <Spinner />
+    ) : (
+      <>
+        <ItemsList items={data?.result || []} />
+        {data?.total && <ListFooter />}
+      </>
+    );
 
   useEffect(() => {
     if (data?.total) {
