@@ -3,7 +3,8 @@
   command = "npm run build" 
 
 [[headers]]  
-  for = "https://hcateringback-dev.unitbeandev.com/api/wh/items*"  
+  for = "https://hcateringback-dev.unitbeandev.com/api*"  
+  https://hcateringback-dev.unitbeandev.com/api
   [headers.values]  
     Access-Control-Allow-Origin = "*"  
     Access-Control-Allow-Methods = "GET, POST, PATCH"  
