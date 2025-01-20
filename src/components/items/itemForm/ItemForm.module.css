@@ -69,3 +69,7 @@
   background-color: #8d8585;
   cursor: not-allowed;
 }
+
+.error {
+  color: var(--AccentPrimary);
+}

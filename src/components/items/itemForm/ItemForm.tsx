@@ -30,6 +30,8 @@ const textForEdit = {
   subtitle: 'Заполните все поля для создания новой номенклатуры',
 };
 
+const errorMsg = 'Это поле обязательно';
+
 export const ItemForm: React.FC<ItemFormType> = ({
   isEditMode,
   item,
@@ -40,6 +42,7 @@ export const ItemForm: React.FC<ItemFormType> = ({
     handleSubmit,
     formState: { errors, isValid },
   } = useForm<ItemFormFields>({
+    mode: 'onChange',
     defaultValues: {
       name: item?.name || '',
       measurement_units: item?.measurement_units || '',
@@ -68,10 +71,7 @@ export const ItemForm: React.FC<ItemFormType> = ({
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.formGroup}>
           <label>Название</label>
-          <input
-            type="text"
-            {...register('name', { required: 'Это поле обязательно' })}
-          />
+          <input type="text" {...register('name', { required: errorMsg })} />
           {errors.name && (
             <span className={styles.error}>{errors.name.message}</span>
           )}
@@ -82,7 +82,7 @@ export const ItemForm: React.FC<ItemFormType> = ({
           <input
             type="text"
             {...register('measurement_units', {
-              required: 'Это поле обязательно',
+              required: errorMsg,
             })}
           />
           {errors.measurement_units && (
@@ -94,10 +94,7 @@ export const ItemForm: React.FC<ItemFormType> = ({
 
         <div className={styles.formGroup}>
           <label>Артикул</label>
-          <input
-            type="text"
-            {...register('code', { required: 'Это поле обязательно' })}
-          />
+          <input type="text" {...register('code', { required: errorMsg })} />
           {errors.code && (
             <span className={styles.error}>{errors.code.message}</span>
           )}
@@ -105,9 +102,7 @@ export const ItemForm: React.FC<ItemFormType> = ({
 
         <div className={styles.formGroup}>
           <label>Описание</label>
-          <textarea
-            {...register('description', { required: 'Это поле обязательно' })}
-          />
+          <textarea {...register('description', { required: errorMsg })} />
           {errors.description && (
             <span className={styles.error}>{errors.description.message}</span>
           )}
