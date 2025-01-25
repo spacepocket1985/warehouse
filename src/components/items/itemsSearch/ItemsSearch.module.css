@@ -1,0 +1,24 @@
+.searchWrapper {
+  display: flex;
+}
+.searchInput {
+  font-size: 1.4rem;
+  max-width: 21rem;
+  width: 100%;
+  height: 4rem;
+  background-image: url('search.svg');
+  background-repeat: no-repeat;
+  background-position: 0.5rem center;
+  padding-left: 3.4rem;
+  border: solid 0.1rem #dfdddd;
+  border-radius: 0.4rem 0 0 0.4rem;
+}
+
+.searchBtn {
+  font-size: 1.4rem;
+  padding: 0.4rem 1rem;
+  background-color: var(--AccentSecondary);
+  color: #fff;
+  border: none;
+  border-radius: 0 0.4rem 0.4rem 0;
+}

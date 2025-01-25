@@ -1,0 +1,7 @@
+.footerWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 2rem;
+  padding-bottom: 2rem;
+}

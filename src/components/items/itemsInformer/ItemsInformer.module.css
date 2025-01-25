@@ -1,0 +1,8 @@
+.informer {
+  font-size: 1.3rem;
+  line-height: 1.6rem;
+  color: #fff;
+  background-color: var(--AccentPrimary);
+  border-radius: 0.4rem;
+  padding: 0.4rem 0.8rem;
+}

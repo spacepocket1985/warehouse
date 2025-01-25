@@ -1,0 +1,10 @@
+[build]  
+  publish = "dist"
+  command = "npm run build"
+
+[[headers]]  
+  for = "/api/*"
+  [headers.values]  
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, PATCH"
+    Access-Control-Allow-Headers = "Content-Type"

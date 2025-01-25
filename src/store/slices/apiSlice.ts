@@ -1,0 +1,78 @@
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { ApiResponse, ItemType, SortOrder } from '../../types/apiTypes';
+import { getTokenFromLS } from '../../utils/localStorageActions';
+
+const BaseUrl = 'https://hcateringback-dev.unitbeandev.com/api/wh/items';
+
+export const warehouseApi = createApi({
+  reducerPath: 'warehouseItemsApi',
+  baseQuery: fetchBaseQuery({
+    baseUrl: BaseUrl,
+    prepareHeaders: (headers) => {
+      const token = getTokenFromLS();
+      if (token) {
+        headers.set('Authorization', `${token}`);
+      }
+      return headers;
+    },
+  }),
+  tagTypes: ['Items'],
+  endpoints: (builder) => ({
+    getItemList: builder.query<
+      ApiResponse,
+      { page: number; pageSize: number; sortOrder: SortOrder; itemName: string }
+    >({
+      query: ({ page, pageSize, sortOrder, itemName }) => ({
+        url: `?page=${page}&pageSize=${pageSize}&sortOrder=${sortOrder}&itemName=${itemName}`,
+      }),
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.result.map(({ id }) => ({
+                type: 'Items' as const,
+                id,
+              })),
+              { type: 'Items', id: 'LIST' },
+            ]
+          : [{ type: 'Items', id: 'LIST' }],
+      transformResponse: (response: ApiResponse) => {
+        const transformedItems: ItemType[] = response.result.map((item) =>
+          transformItem(item)
+        );
+        return { ...response, result: transformedItems };
+      },
+    }),
+
+    addItem: builder.mutation<ApiResponse, Omit<ItemType, 'id'>>({
+      query: (item) => ({
+        url: '',
+        method: 'POST',
+        body: item,
+      }),
+      invalidatesTags: ['Items'],
+    }),
+    updateItem: builder.mutation<ApiResponse, ItemType>({
+      query: (item) => ({
+        url: `/${item.id}`,
+        method: 'PATCH',
+        body: item,
+      }),
+      invalidatesTags: ['Items'],
+    }),
+  }),
+});
+
+export const {
+  useGetItemListQuery,
+  useAddItemMutation,
+  useUpdateItemMutation,
+} = warehouseApi;
+
+const transformItem = (item: ItemType) => ({
+  ...item,
+  name: !item.name ? 'Название не указано' : item.name,
+  measurement_units: !item.measurement_units
+    ? 'Единицы не указаны'
+    : item.measurement_units,
+  code: !item.code ? 'Код не задан' : item.code,
+});

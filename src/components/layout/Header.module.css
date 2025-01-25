@@ -1,0 +1,34 @@
+.headerWrapper {
+  margin-top: 1rem;
+  padding: 2.5rem 2rem 4.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.headerHeading {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.headerTitle {
+  font-size: 3.2rem;
+  font-weight: 600;
+  line-height: 120%;
+}
+
+.headerActions {
+  display: flex;
+  gap: 1.6rem;
+}
+
+.headerActionsBtn {
+  padding: 1.4rem 1rem;
+  color: #fff;
+  background-color: var(--AccentPrimary);
+  border: none;
+  border-radius: 0.4rem;
+}
